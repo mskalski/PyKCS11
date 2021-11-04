@@ -50,7 +50,7 @@ class TestUtil(unittest.TestCase):
 
         # buffer of 32 bytes 0x00
         DataIn = [0] * 32
-        # print("DataIn:", DataIn)
+        print("DataIn:", DataIn)
 
         # AES CBC with IV
         mechanism = PyKCS11.Mechanism(PyKCS11.CKM_AES_CBC, "1234567812345678")
@@ -61,7 +61,7 @@ class TestUtil(unittest.TestCase):
         )[0]
 
         DataOut = self.session.encrypt(symKey, DataIn, mechanism)
-        # print("DataOut", DataOut)
+        print("DataOut", DataOut)
 
         DataCheck = self.session.decrypt(symKey, DataOut, mechanism)
         print("DataCheck:", DataCheck)
@@ -92,7 +92,7 @@ class TestUtil(unittest.TestCase):
 
         # 2nd block
         #self.assertSequenceEqual(DataOut[16:], DataECBOut2)
-        if DataOut[16:] != DataECBOut2:
+        if len(DataOut) != 16 or len(DataECBOut2):
             print("assertSequenceEqual(DataOut[16:], DataECBOut2): different")
 
         #
