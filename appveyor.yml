@@ -26,6 +26,7 @@ install:
   - "%PYTHON%\\python.exe -m pip install wheel"
   - test\appveyor_install.cmd
 
+
 build_script:
   - python setup.py sdist
   - python setup.py bdist
